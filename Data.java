@@ -2,6 +2,11 @@ public class Data {
     public static final int MAX=(int)(Math.random()* Integer.MAX_VALUE);
     private int[][] grid;
 
+    public Data(int rows, int collumns)
+    {
+        grid = new int [rows][collumns];
+    }
+    
     public Data(int[][] arr)
     {
         grid=arr;
@@ -37,17 +42,21 @@ public class Data {
         }    
     }
 
-
-    /**
-     * Returns the number of columns in
-     * grid that are in increasing order, as
-     * described in part (b)
-     * Precondition: grid is not null.
-     * grid has at least one element.
-     */
-    public int countIncreasingCols() {
-        return 0;
+    public int countIncreasingCols() 
+    {
+        int count=0;
+        for (int col=0;col<grid[0].length;col++)
+        {
+            int increasing = 1;
+            for (int row=1;row<grid.length;row++)
+            {
+                if (grid[row][col]>=grid[row-1][col]) increasing++;
+                if (increasing == grid.length) count++;
+            }
+        }
+        return count;    
     }
+
 
 
     // There may be instance variables, constructors
